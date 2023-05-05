@@ -1,4 +1,4 @@
-let record = JSON.parse(localStorage.getItem("record"));
+let record = JSON.parse(localStorage.getItem("record")) ?? [];
 let dataArray;
 const form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
