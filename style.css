@@ -1,0 +1,135 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #b0a4a4;
+}
+
+.navBar {
+  height: 10%;
+  width: auto;
+  text-align: center;
+  padding: 1vh 2vw;
+  border-bottom: 2px solid black;
+  box-shadow: 0 3px 5px 0 black;
+  background-color: #5f264a;
+  color: white;
+}
+
+.navBar .title {
+  font-size: 36px;
+  font-family: monospace;
+}
+
+.container {
+  text-align: center;
+  box-shadow: 3px 3px 3px 3px black;
+  margin-top: 10vh;
+  width: max-content;
+  height: max-content;
+  padding: 3vh 3vw;
+  background-color: #643a6b;
+  color: white;
+}
+
+.col-md-12 {
+  padding: 0;
+}
+.col-md-12 label {
+  border: 2px solid black;
+  width: 15vw;
+}
+
+.col-md-12 span {
+  margin-right: 0px;
+  font-size: 16px;
+}
+
+.col-md-12 input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  width: 100%;
+}
+
+.col-md-6 select {
+  background-color: white;
+  outline: none;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+#showBtn {
+  display: none;
+}
+
+.container-fluid {
+  box-shadow: 3px 3px 3px 3px black;
+  margin-top: 10vh;
+  width: max-content;
+  height: 60%;
+  padding-top: 5vh;
+  background-color: #643a6b;
+  color: white;
+}
+
+#showDetails {
+  display: none;
+  width: 90%;
+  height: max-content;
+  margin-bottom: 5vh;
+  padding: 2vh 2vw;
+  max-height: 600px;
+  overflow-y: scroll;
+  scrollbar-width: min;
+}
+
+#showDetails .col-md-4,
+.col-sm-12 {
+  margin-top: 5px;
+}
+
+#showDetails .individual {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 1vh 1vw;
+}
+
+#showDetails table {
+  table-layout: fixed;
+  width: 100%;
+}
+#showDetails th {
+  text-align: left;
+  width: 50%;
+}
+#showDetails td {
+  word-wrap: break-word;
+  text-align: left;
+  width: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  html,
+  body {
+    padding: 2vh 2vw;
+  }
+  .container {
+    height: auto;
+    width: auto;
+    /* padding-bottom: 5vh; */
+  }
+  #showDetails {
+    padding: 2vh 2vw;
+    width: auto;
+  }
+  .row {
+    border-bottom: 2px solid black;
+    padding-bottom: 2vh;
+  }
+  .col-md-6 label {
+    width: 60vw;
+    margin-bottom: 2vh;
+  }
+}
