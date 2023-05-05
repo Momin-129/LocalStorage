@@ -20,16 +20,19 @@
       <form>
         <div class="row mt-5">
           <div class="col-md-12 col-sm-12">
+            <span id="label">Full Name:</span>
             <input type="text" id="name" placeholder="Full Name" name="name" />
           </div>
         </div>
         <div class="row mt-2">
           <div class="col-md-12 col-sm-12">
+            <span id="label">Email:</span>
             <input type="email" id="email" placeholder="Email" name="email" />
           </div>
         </div>
         <div class="row mt-2">
           <div class="col-md-12 col-sm-12">
+            <span id="label">Contact:</span>
             <input
               type="tel"
               id="contact"
@@ -40,6 +43,7 @@
         </div>
         <div class="row mt-2">
           <div class="col-md-12 col-sm-12">
+            <span id="label">Address:</span>
             <input
               type="text"
               id="address"
@@ -50,6 +54,7 @@
         </div>
         <div class="row mt-2">
           <div class="col-md-12 col-sm-12">
+            <span id="label">Gender:</span>
             <input
               type="radio"
               name="gender"
@@ -64,36 +69,43 @@
         </div>
         <div class="row mt-2">
           <div class="col-md-12 col-sm-12">
+            <span id="label">Languages:</span>
             <input
               type="checkbox"
               id="language"
               name="language"
               value="java"
-            />JAVA
+            /><span>JAVA</span>
             <input
               type="checkbox"
               id="language"
               name="language"
               value="cpp"
-            />C++
+            /><span>C++</span>
             <input
               type="checkbox"
               id="language"
               name="language"
               value="javascript"
-            />JavaScript
+            /><span>JavaScript</span>
             <input
               type="checkbox"
               id="language"
               name="language"
               value="python"
-            />Python
-            <input type="checkbox" id="language" name="language" value="r" />R
+            /><span>Pyhton</span>
+            <input
+              type="checkbox"
+              id="language"
+              name="language"
+              value="r"
+            /><span>R</span>
           </div>
         </div>
         <div class="row mt-2">
           <div class="col-md-12 col-sm-12">
             <select name="identity" id="identity">
+              <option value="default">Choose Identity Proof</option>
               <option value="aadhar">Aadhar Card</option>
               <option value="lisence">Driver Lisence</option>
               <option value="pan">PAN Card</option>
