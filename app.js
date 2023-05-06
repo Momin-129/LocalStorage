@@ -4,7 +4,9 @@ let userInput = document.querySelectorAll(
 );
 let empty = false;
 let emptyCheck = false;
-let valid = true;
+let validText = true;
+let validEmail = true;
+let validContact = true;
 const form = document.querySelector("form");
 
 userInput.forEach((input) =>
@@ -22,12 +24,12 @@ userInput.forEach((input) =>
           parent.appendChild(error);
           error.innerHTML = "Field Can't Be Empty";
         }
-        valid = false;
+        validText = false;
       } else {
         if (parent.querySelector("#error")) {
           parent.querySelector("#error").innerHTML = "";
         }
-        valid = true;
+        validText = true;
       }
     }
 
@@ -44,12 +46,12 @@ userInput.forEach((input) =>
         } else {
           parent.querySelector("#error").innerHTML += " Invalid Email";
         }
-        valid = false;
+        validEmail = false;
       } else {
         if (parent.querySelector("#error")) {
           parent.querySelector("#error").innerHTML = "";
         }
-        valid = true;
+        validEmail = true;
       }
     }
 
@@ -62,12 +64,12 @@ userInput.forEach((input) =>
         } else {
           parent.querySelector("#error").innerHTML += "Only Numbers Allowed";
         }
-        valid = false;
+        validContact = false;
       } else {
         if (parent.querySelector("#error")) {
           parent.querySelector("#error").innerHTML = "";
         }
-        valid = true;
+        validContact = true;
       }
       if (target.value.length != 10) {
         if (!parent.querySelector("#error")) {
@@ -77,12 +79,12 @@ userInput.forEach((input) =>
           parent.querySelector("#error").innerHTML +=
             "Numbers Should be of 10 digits";
         }
-        valid = false;
+        validContact = false;
       } else {
         if (parent.querySelector("#error")) {
           parent.querySelector("#error").innerHTML = "";
         }
-        valid = true;
+        validContact = true;
       }
     }
 
@@ -107,7 +109,13 @@ userInput.forEach((input) =>
     console.log("Empty:", empty, "Checkbox:", emptyCheck, "Validity:", valid);
 
     // Final Check to enable submit button
-    if (empty == false && emptyCheck == false && valid == true) {
+    if (
+      empty == false &&
+      emptyCheck == false &&
+      validText == true &&
+      validEmail == true &&
+      validContact == true
+    ) {
       document.querySelector("#btn").disabled = false;
     } else {
       document.querySelector("#btn").disabled = true;
