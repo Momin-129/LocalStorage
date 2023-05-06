@@ -2,11 +2,11 @@ let record = JSON.parse(localStorage.getItem("record")) ?? [];
 let userInput = document.querySelectorAll(
   "input[type='text'],input[type='checkbox']"
 );
-let empty = false;
-let emptyCheck = false;
-let validText = true;
-let validEmail = true;
-let validContact = true;
+let empty = true;
+let emptyCheck = true;
+let validText = false;
+let validEmail = false;
+let validContact = false;
 const form = document.querySelector("form");
 
 userInput.forEach((input) =>
@@ -106,7 +106,18 @@ userInput.forEach((input) =>
       emptyCheck = true;
     } else emptyCheck = false;
 
-    console.log("Empty:", empty, "Checkbox:", emptyCheck, "Validity:", valid);
+    console.log(
+      "Empty:",
+      empty,
+      "Checkbox:",
+      emptyCheck,
+      "ValidText:",
+      validText,
+      "ValidEmail:",
+      validEmail,
+      "validContact:",
+      validContact
+    );
 
     // Final Check to enable submit button
     if (
