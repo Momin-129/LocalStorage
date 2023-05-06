@@ -1,6 +1,117 @@
 let record = JSON.parse(localStorage.getItem("record")) ?? [];
-let dataArray;
+let userInput = document.querySelectorAll("input");
+let empty = false;
+let emptyCheck = false;
+let valid = true;
 const form = document.querySelector("form");
+
+userInput.forEach((input) =>
+  input.addEventListener("blur", (event) => {
+    // empty = false;
+    let target = event.target;
+    let parent = target.parentNode;
+    let error = document.createElement("span");
+    error.setAttribute("id", "error");
+
+    // For validating required each filed
+    if (target.type == "text") {
+      if (target.value.length === 0) {
+        if (!parent.querySelector("#error")) {
+          parent.appendChild(error);
+          error.innerHTML = "Field Can't Be Empty";
+        }
+        valid = false;
+      } else {
+        if (parent.querySelector("#error")) {
+          parent.querySelector("#error").innerHTML = "";
+        }
+        valid = true;
+      }
+    }
+
+    // For Email Validation
+    if (target.id == "email") {
+      let regex = new RegExp(
+        /^([a-zA-z0-9_\.\-])+\@(([a-zA-z0-9])+\.)+([a-zA-z0-9]{2,4})+$/g
+      );
+      let result = regex.test(target.value);
+      if (!result) {
+        if (!parent.querySelector("#error")) {
+          parent.appendChild(error);
+          error.innerHTML = "Invalid Email";
+        } else {
+          parent.querySelector("#error").innerHTML += " Invalid Email";
+        }
+        valid = false;
+      } else {
+        if (parent.querySelector("#error")) {
+          parent.querySelector("#error").innerHTML = "";
+        }
+        valid = true;
+      }
+    }
+
+    // to check contact have only digits and also 10 digits
+    if (target.id == "contact") {
+      if (!/^\d+$/.test(target.value)) {
+        if (!parent.querySelector("#error")) {
+          parent.appendChild(error);
+          error.innerHTML = "Only Numbers Allowed";
+        } else {
+          parent.querySelector("#error").innerHTML += "Only Numbers Allowed";
+        }
+        valid = false;
+      } else {
+        if (parent.querySelector("#error")) {
+          parent.querySelector("#error").innerHTML = "";
+        }
+        valid = true;
+      }
+      if (target.value.length != 10) {
+        if (!parent.querySelector("#error")) {
+          parent.appendChild(error);
+          error.innerHTML = "Numbers Should be of 10 digits";
+        } else {
+          parent.querySelector("#error").innerHTML +=
+            "Numbers Should be of 10 digits";
+        }
+        valid = false;
+      } else {
+        if (parent.querySelector("#error")) {
+          parent.querySelector("#error").innerHTML = "";
+        }
+        valid = true;
+      }
+    }
+
+    // To check Whether all fieds are filled and atleast once checkbox is checked
+    for (let input of userInput) {
+      if (input.value.length === 0) {
+        empty = true;
+        break;
+      } else {
+        empty = false;
+      }
+    }
+
+    let checkbox = document.querySelectorAll(
+      'input[type="checkbox"]:checked'
+    ).length;
+    if (checkbox == 0) {
+      emptyCheck = true;
+    } else emptyCheck = false;
+
+    // Final Check to enable submit button
+    if (empty == false && emptyCheck == false && valid == true) {
+      document.querySelector("#btn").disabled = false;
+    } else {
+      document.querySelector("#btn").disabled = true;
+    }
+
+    //end of function
+  })
+);
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData(form);

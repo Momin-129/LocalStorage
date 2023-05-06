@@ -1,0 +1,19 @@
+{
+  "name": "localstorage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Momin-129/LocalStorage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Momin-129/LocalStorage/issues"
+  },
+  "homepage": "https://github.com/Momin-129/LocalStorage#readme"
+}
