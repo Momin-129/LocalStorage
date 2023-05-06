@@ -1,5 +1,7 @@
 let record = JSON.parse(localStorage.getItem("record")) ?? [];
-let userInput = document.querySelectorAll("input");
+let userInput = document.querySelectorAll(
+  "input[type='text'],input[type='checkbox']"
+);
 let empty = false;
 let emptyCheck = false;
 let valid = true;
@@ -87,6 +89,7 @@ userInput.forEach((input) =>
     // To check Whether all fieds are filled and atleast once checkbox is checked
     for (let input of userInput) {
       if (input.value.length === 0) {
+        console.log(empty, input.id, "\n");
         empty = true;
         break;
       } else {
@@ -101,6 +104,8 @@ userInput.forEach((input) =>
       emptyCheck = true;
     } else emptyCheck = false;
 
+    console.log("Empty:", empty, "Checkbox:", emptyCheck, "Validity:", valid);
+
     // Final Check to enable submit button
     if (empty == false && emptyCheck == false && valid == true) {
       document.querySelector("#btn").disabled = false;
@@ -112,6 +117,7 @@ userInput.forEach((input) =>
   })
 );
 
+// Form Submission
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData(form);
@@ -160,4 +166,46 @@ document.getElementById("showBtn").addEventListener("click", () => {
 
   details.style.display = "block";
   document.getElementById("showBtn").style.display = "none";
+});
+
+// Search Button
+//
+document.querySelector("#search").addEventListener("keyup", () => {
+  let value = document.getElementById("search").value;
+  let details = document.getElementById("showDetails");
+  let row = document.getElementById("gridRow");
+  row.innerHTML = "";
+
+  record = JSON.parse(localStorage.getItem("record"));
+
+  let filter = record.filter((item) => {
+    if (item.name.includes(value)) {
+      return item;
+    }
+  });
+
+  console.log(filter);
+
+  for (eachRecord of filter) {
+    let col = document.createElement("div");
+    col.classList.add("col-md-4", "col-sm-12");
+    row.appendChild(col);
+    let individual = document.createElement("div");
+    individual.classList.add("individual");
+    col.appendChild(individual);
+    let table = document.createElement("table");
+    individual.appendChild(table);
+    for (item in eachRecord) {
+      let tr = document.createElement("tr");
+      table.appendChild(tr);
+      let th = document.createElement("th");
+      let td = document.createElement("td");
+      let key = document.createTextNode(item.toUpperCase());
+      let value = document.createTextNode(eachRecord[item]);
+      th.appendChild(key);
+      td.appendChild(value);
+      tr.appendChild(th);
+      tr.appendChild(td);
+    }
+  }
 });

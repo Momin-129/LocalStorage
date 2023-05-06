@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #b0a4a4;
+  background-color: lightslategrey;
 }
 
 .navBar {
@@ -12,9 +12,8 @@ body {
   text-align: center;
   padding: 1vh 2vw;
   border-bottom: 2px solid black;
-  box-shadow: 0 3px 5px 0 black;
-  background-color: #5f264a;
-  color: white;
+  box-shadow: 0 3px 5px 0 white;
+  background-color: #fff;
 }
 
 .navBar .title {
@@ -29,8 +28,7 @@ body {
   width: max-content;
   height: max-content;
   padding: 3vh 3vw;
-  background-color: #643a6b;
-  color: white;
+  background-color: #fff;
 }
 
 .col-md-12 {
@@ -71,7 +69,7 @@ input[type="tel"] {
 }
 
 #showBtn {
-  display: none;
+  /* display: none; */
 }
 
 .container-fluid {
@@ -80,8 +78,7 @@ input[type="tel"] {
   width: max-content;
   height: 60%;
   padding-top: 5vh;
-  background-color: #643a6b;
-  color: white;
+  background-color: #fff;
 }
 
 #showDetails {
@@ -104,6 +101,7 @@ input[type="tel"] {
   border: 2px solid black;
   border-radius: 5px;
   padding: 1vh 1vw;
+  height: 30vh;
 }
 
 #error {
@@ -127,6 +125,10 @@ input[type="tel"] {
   width: 50%;
 }
 
+#search {
+  border-radius: 5px;
+}
+
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   html,
@@ -135,16 +137,23 @@ input[type="tel"] {
   }
   .container {
     height: auto;
-    width: auto;
+    width: 100%;
     padding: 2vh 2vw;
   }
   #showDetails {
     padding: 2vh 2vw;
     width: auto;
   }
+  #label {
+    text-align: center;
+  }
+  #error {
+    text-align: center;
+  }
   .row {
     padding-bottom: 2vh;
   }
+
   .col-md-12 input[type="text"],
   input[type="email"],
   input[type="tel"] {
