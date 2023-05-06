@@ -10,9 +10,9 @@ const form = document.querySelector("form");
 userInput.forEach((input) =>
   input.addEventListener("blur", (event) => {
     // empty = false;
-    let target = event.target;
-    let parent = target.parentNode;
-    let error = document.createElement("span");
+    let target = event.target; // current input
+    let parent = target.parentNode; // parent of current input
+    let error = document.createElement("span"); // creating a span for errors
     error.setAttribute("id", "error");
 
     // For validating required each filed
@@ -34,7 +34,7 @@ userInput.forEach((input) =>
     // For Email Validation
     if (target.id == "email") {
       let regex = new RegExp(
-        /^([a-zA-z0-9_\.\-])+\@(([a-zA-z0-9])+\.)+([a-zA-z0-9]{2,4})+$/g
+        /^([a-zA-Z0-9\_\.\-])+\@(([a-zA-z0-9])+\.)+([a-zA-z0-9]{2,4})+$/g
       );
       let result = regex.test(target.value);
       if (!result) {
