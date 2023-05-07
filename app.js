@@ -1,136 +1,103 @@
 let record = JSON.parse(localStorage.getItem("record")) ?? [];
-let userInput = document.querySelectorAll(
-  "input[type='text'],input[type='checkbox']"
-);
-let empty = true;
-let emptyCheck = true;
-let validText = false;
-let validEmail = false;
-let validContact = false;
+let userInput = document.querySelectorAll("input,select");
+let emptyChecker = {
+  name: true,
+  email: true,
+  contact: true,
+  address: true,
+  language: true,
+  identity: true,
+};
+let isValid = { email: true, contact: true };
 const form = document.querySelector("form");
 
 userInput.forEach((input) =>
   input.addEventListener("blur", (event) => {
-    // empty = false;
     let target = event.target; // current input
-    let parent = target.parentNode; // parent of current input
-    let error = document.createElement("span"); // creating a span for errors
-    error.setAttribute("id", "error");
+    let parent = target.parentNode;
+    let idOfField = target.id; // get id of input field
+    let empty = false,
+      valid = true;
 
-    // For validating required each filed
-    if (target.type == "text") {
-      if (target.value.length === 0) {
-        if (!parent.querySelector("#error")) {
-          parent.appendChild(error);
-          error.innerHTML = "Field Can't Be Empty";
-        }
-        validText = false;
-      } else {
-        if (parent.querySelector("#error")) {
-          parent.querySelector("#error").innerHTML = "";
-        }
-        validText = true;
-      }
+    // To check if an error tag already exists.
+    if (parent.querySelector("#erro")) {
+      let error = document.createElement("span"); // creating a span for errors.
+      error.setAttribute("id", "error"); // set id for error span tag.
+      parent.appendChild(error); // append span tag in parent of current input tag.
     }
 
-    // For Email Validation
-    if (target.id == "email") {
+    // To check if an input field is left empty
+    if (target.value.length == 0) {
+      emptyChecker[idOfField] = true;
+    } else if (emptyChecker[idOfField] == true) emptyChecker[idOfField] = false;
+
+    // Email Validation
+    if (target.id == "email" && emptyChecker[idOfField] == false) {
       let regex = new RegExp(
         /^([a-zA-Z0-9\_\.\-])+\@(([a-zA-z0-9])+\.)+([a-zA-z0-9]{2,4})+$/g
       );
       let result = regex.test(target.value);
       if (!result) {
-        if (!parent.querySelector("#error")) {
-          parent.appendChild(error);
-          error.innerHTML = "Invalid Email";
-        } else {
-          parent.querySelector("#error").innerHTML += " Invalid Email";
-        }
-        validEmail = false;
-      } else {
-        if (parent.querySelector("#error")) {
-          parent.querySelector("#error").innerHTML = "";
-        }
-        validEmail = true;
-      }
+        parent.querySelector("#error").innerHTML = "*Email is invalid";
+        isValid[idOfField] = false;
+      } else if (isValid[idOfField] == false) isValid[idOfField] = true;
     }
 
-    // to check contact have only digits and also 10 digits
-    if (target.id == "contact") {
-      if (!/^\d+$/.test(target.value)) {
-        if (!parent.querySelector("#error")) {
-          parent.appendChild(error);
-          error.innerHTML = "Only Numbers Allowed";
-        } else {
-          parent.querySelector("#error").innerHTML += "Only Numbers Allowed";
-        }
-        validContact = false;
-      } else {
-        if (parent.querySelector("#error")) {
-          parent.querySelector("#error").innerHTML = "";
-        }
-        validContact = true;
-      }
+    // Check if validity of field is true and empty error message if so.
+    if (isValid[idOfField] && parent.querySelector("#error"))
+      parent.querySelector("#error").innerHTML = "";
+
+    // Contact Validation
+    if (target.id == "contact" && emptyChecker[idOfField] == false) {
       if (target.value.length != 10) {
-        if (!parent.querySelector("#error")) {
-          parent.appendChild(error);
-          error.innerHTML = "Numbers Should be of 10 digits";
-        } else {
-          parent.querySelector("#error").innerHTML +=
-            "Numbers Should be of 10 digits";
-        }
-        validContact = false;
-      } else {
-        if (parent.querySelector("#error")) {
-          parent.querySelector("#error").innerHTML = "";
-        }
-        validContact = true;
-      }
+        parent.querySelector("#error").innerHTML =
+          "*Please Provide a valid number.";
+        isValid[idOfField] = false;
+      } else if (!/^\d+$/.test(target.value)) {
+        parent.querySelector("#error").innerHTML =
+          "*Please Provide a valid number.";
+        isValid[idOfField] = false;
+      } else if (isValid[idOfField] == false) isValid[idOfField] = true;
     }
 
-    // To check Whether all fieds are filled and atleast once checkbox is checked
-    for (let input of userInput) {
-      if (input.value.length === 0) {
-        console.log(empty, input.id, "\n");
-        empty = true;
-        break;
-      } else {
-        empty = false;
-      }
+    //Check box validation
+    if (target.id == "language") {
+      let checkboxes = document.querySelectorAll(
+        "input[type='checkbox']:checked"
+      );
+      if (checkboxes.length == 0) {
+        parent.querySelector("#error").innerHTML =
+          "*Please Provide a valid number.";
+        emptyChecker[idOfField] = false;
+      } else if (emptyChecker[idOfField] == false)
+        emptyChecker[idOfField] = true;
     }
 
-    let checkbox = document.querySelectorAll(
-      'input[type="checkbox"]:checked'
-    ).length;
-    if (checkbox == 0) {
-      emptyCheck = true;
-    } else emptyCheck = false;
-
-    console.log(
-      "Empty:",
-      empty,
-      "Checkbox:",
-      emptyCheck,
-      "ValidText:",
-      validText,
-      "ValidEmail:",
-      validEmail,
-      "validContact:",
-      validContact
-    );
-
-    // Final Check to enable submit button
-    if (
-      empty == false &&
-      emptyCheck == false &&
-      validText == true &&
-      validEmail == true &&
-      validContact == true
-    ) {
-      document.querySelector("#btn").disabled = false;
-    } else {
-      document.querySelector("#btn").disabled = true;
+    if (target.id == "identity") {
+      if (target.value === "Choose Identity Proof") {
+        parent.querySelectorAll("#error").innerHTML =
+          "*Please Select an identity proof.";
+        emptyChecker[idOfField] = true;
+      } else emptyChecker[idOfField] = false;
     }
+
+    // Give error tag value if it is empty.
+    if (emptyChecker[idOfField])
+      parent.querySelector("#error").innerHTML = "*Field Can't Be Empty.";
+    else if (isValid[idOfField] == undefined || isValid[idOfField] == true)
+      parent.querySelector("#error").innerHTML = "";
+
+    //Check empty and valid
+    for (let key in emptyChecker) {
+      if (emptyChecker[key] == true) empty = true;
+    }
+    for (let key in isValid) {
+      if (isValid[key] == false) valid = false;
+    }
+
+    if (empty == false && valid == true)
+      document.querySelector(".btn").disable = false;
+    else document.querySelector(".btn").disable = true;
 
     //end of function
   })
