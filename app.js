@@ -20,7 +20,7 @@ userInput.forEach((input) =>
       valid = true;
 
     // To check if an error tag already exists.
-    if (parent.querySelector("#erro")) {
+    if (!parent.querySelector("#error")) {
       let error = document.createElement("span"); // creating a span for errors.
       error.setAttribute("id", "error"); // set id for error span tag.
       parent.appendChild(error); // append span tag in parent of current input tag.
@@ -66,17 +66,15 @@ userInput.forEach((input) =>
         "input[type='checkbox']:checked"
       );
       if (checkboxes.length == 0) {
-        parent.querySelector("#error").innerHTML =
-          "*Please Provide a valid number.";
-        emptyChecker[idOfField] = false;
-      } else if (emptyChecker[idOfField] == false)
         emptyChecker[idOfField] = true;
+      } else if (emptyChecker[idOfField] == true)
+        emptyChecker[idOfField] = false;
     }
 
     if (target.id == "identity") {
       if (target.value === "Choose Identity Proof") {
         parent.querySelectorAll("#error").innerHTML =
-          "*Please Select an identity proof.";
+          "*Please Selectean identity proof.";
         emptyChecker[idOfField] = true;
       } else emptyChecker[idOfField] = false;
     }
@@ -95,9 +93,10 @@ userInput.forEach((input) =>
       if (isValid[key] == false) valid = false;
     }
 
+    console.log(empty, valid);
     if (empty == false && valid == true)
-      document.querySelector(".btn").disable = false;
-    else document.querySelector(".btn").disable = true;
+      document.querySelector(".btn").disabled = false;
+    else document.querySelector(".btn").disabled = true;
 
     //end of function
   })
