@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: lightslategrey;
+  background-color: #f96167;
 }
 
 .navBar {
@@ -12,7 +12,7 @@ body {
   text-align: center;
   padding: 1vh 2vw;
   border-bottom: 2px solid black;
-  box-shadow: 0 3px 5px 0 white;
+  box-shadow: 0 3px 5px 0 #f9e795;
   background-color: #fff;
 }
 
@@ -28,7 +28,7 @@ body {
   width: max-content;
   height: max-content;
   padding: 3vh 3vw;
-  background-color: #fff;
+  background-color: #f9e795;
 }
 
 .col-md-12 {
