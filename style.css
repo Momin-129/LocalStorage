@@ -1,9 +1,9 @@
 html,
 body {
   margin: 0;
-  padding: 0;
+  padding: 5px 5px;
   height: 100%;
-  background-color: #f96167;
+  background-color: #ffffff;
 }
 
 .navBar {
@@ -13,7 +13,7 @@ body {
   padding: 1vh 2vw;
   border-bottom: 2px solid black;
   box-shadow: 0 3px 5px 0 #f9e795;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 .navBar .title {
@@ -28,7 +28,7 @@ body {
   width: max-content;
   height: max-content;
   padding: 3vh 3vw;
-  background-color: #f9e795;
+  background-color: #ffa351;
 }
 
 .col-md-12 {
@@ -78,7 +78,7 @@ input[type="tel"] {
   width: max-content;
   height: 60%;
   padding-top: 5vh;
-  background-color: #fff;
+  background-color: #eed971;
 }
 
 #showDetails {
