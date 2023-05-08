@@ -7,7 +7,7 @@ let emptyChecker = {
   language: true,
   identity: true,
 };
-let isValid = { email: true, contact: true };
+let isValid = { name: true, email: true, contact: true };
 
 userInput.forEach((input) =>
   input.addEventListener("blur", (event) => {
@@ -29,6 +29,15 @@ userInput.forEach((input) =>
       emptyChecker[idOfField] = true;
     } else if (emptyChecker[idOfField] == true) emptyChecker[idOfField] = false;
 
+    // Name Validation
+    if (target.id == "name" && emptyChecker[idOfField] == false) {
+      if (!/^[a-zA-Z ]{2,30}$/.test(target.value)) {
+        parent.querySelector("#error").innerHTML =
+          "*Name Should Contain Only Alphabets.";
+        isValid[idOfField] = false;
+      } else if (isValid[idOfField] == false) isValid[idOfField] = true;
+    }
+
     // Email Validation
     if (target.id == "email" && emptyChecker[idOfField] == false) {
       let regex = new RegExp(
@@ -40,10 +49,6 @@ userInput.forEach((input) =>
         isValid[idOfField] = false;
       } else if (isValid[idOfField] == false) isValid[idOfField] = true;
     }
-
-    // Check if validity of field is true and empty error message if so.
-    if (isValid[idOfField] && parent.querySelector("#error"))
-      parent.querySelector("#error").innerHTML = "";
 
     // Contact Validation
     if (target.id == "contact" && emptyChecker[idOfField] == false) {
@@ -76,6 +81,10 @@ userInput.forEach((input) =>
         emptyChecker[idOfField] = true;
       } else emptyChecker[idOfField] = false;
     }
+
+    // Check if validity of field is true and empty error message if so.
+    if (isValid[idOfField] && parent.querySelector("#error"))
+      parent.querySelector("#error").innerHTML = "";
 
     // Give error tag value if it is empty.
     if (emptyChecker[idOfField])
