@@ -1,24 +1,6 @@
 let record = JSON.parse(localStorage.getItem("record")) ?? [];
 const form = document.querySelector("form");
 
-// Form Submission
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const formData = new FormData(form);
-  const obj = Object.fromEntries(formData);
-
-  let Languages = formData.getAll("language");
-  obj.language = Languages;
-
-  record.push(obj);
-  localStorage.setItem("record", JSON.stringify(record));
-  form.reset();
-
-  document.getElementById("btn").disabled = true;
-  document.getElementById("showDetails").style.display = "none";
-  document.getElementById("showBtn").style.display = "inline";
-});
-
 // Show Data
 document.getElementById("showBtn").addEventListener("click", () => {
   let details = document.getElementById("showDetails");
@@ -54,8 +36,22 @@ document.getElementById("showBtn").addEventListener("click", () => {
   document.getElementById("showBtn").style.display = "none";
 });
 
-// Search Button
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+// Search Button
 document.querySelector("#search").addEventListener("keyup", () => {
   let value = document.getElementById("search").value;
   let details = document.getElementById("showDetails");
@@ -69,8 +65,6 @@ document.querySelector("#search").addEventListener("keyup", () => {
       return item;
     }
   });
-
-  console.log(filter);
 
   for (eachRecord of filter) {
     let col = document.createElement("div");
