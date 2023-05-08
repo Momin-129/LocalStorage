@@ -97,12 +97,6 @@ input[type="tel"] {
   margin-top: 5px;
 }
 
-#showDetails .individual {
-  border-radius: 5px;
-  padding: 1px 1px;
-  height: max-content;
-}
-
 #error {
   display: block;
   font-size: 12px;
@@ -117,8 +111,9 @@ input[type="tel"] {
 }
 #showDetails th {
   border: 2px solid black;
-  text-align: left;
-  width: 50%;
+  text-align: center;
+  word-wrap: break-word;
+  /* width: 50%; */
 }
 #showDetails td {
   border: 2px solid black;
