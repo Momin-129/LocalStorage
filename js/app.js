@@ -11,36 +11,34 @@ document.getElementById("showBtn").addEventListener("click", () => {
 
   record = JSON.parse(localStorage.getItem("record"));
 
-  for (eachRecord of record) {
+  record.forEach((element, index) => {
     let tr = document.createElement("tr");
     table.appendChild(tr);
-    for (item in eachRecord) {
+    for (item in element) {
       let td = document.createElement("td");
-      let value = document.createTextNode(eachRecord[item]);
+      let value = document.createTextNode(element[item]);
       td.appendChild(value);
       tr.appendChild(td);
     }
     let buttonTd = document.createElement("td");
     let edit = document.createElement("button");
     let Delete = document.createElement("button");
-    Object.assign(edit, {
-      className: "btn btn-primary",
-      type: "button",
-      id: "edit",
-      value: eachRecord,
-      innerHTML: "Edit",
-    });
-    Object.assign(Delete, {
-      className: "btn btn-danger",
-      type: "button",
-      id: "delete",
-      innerHTML: "Delete",
-    });
+    Delete.setAttribute("class", "btn btn-danger");
+    Delete.setAttribute("value", index);
+    Delete.innerHTML = "Delete";
+    edit.setAttribute("class", "btn btn-success");
+    edit.setAttribute("value", index);
+    edit.innerHTML = "Edit";
+    edit.onclick = (e) => {
+      let individual = e.target.value;
+      console.log(typeof individual);
+      localStorage.setItem("individual", individual);
+      location.href = "editDetails.html";
+    };
     buttonTd.appendChild(edit);
     buttonTd.appendChild(Delete);
     tr.appendChild(buttonTd);
-  }
-
+  });
   details.style.display = "block";
   document.getElementById("showBtn").style.display = "none";
 });
