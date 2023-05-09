@@ -5,6 +5,8 @@ const form = document.querySelector("form");
 document.getElementById("showBtn").addEventListener("click", () => {
   let details = document.getElementById("showDetails");
   let table = document.getElementById("userDetails");
+  let button = document.createElement("button");
+  button.setAttribute("value", "Edit");
   // row.innerHTML = "";
 
   record = JSON.parse(localStorage.getItem("record"));
@@ -18,6 +20,25 @@ document.getElementById("showBtn").addEventListener("click", () => {
       td.appendChild(value);
       tr.appendChild(td);
     }
+    let buttonTd = document.createElement("td");
+    let edit = document.createElement("button");
+    let Delete = document.createElement("button");
+    Object.assign(edit, {
+      className: "btn btn-primary",
+      type: "button",
+      id: "edit",
+      value: eachRecord,
+      innerHTML: "Edit",
+    });
+    Object.assign(Delete, {
+      className: "btn btn-danger",
+      type: "button",
+      id: "delete",
+      innerHTML: "Delete",
+    });
+    buttonTd.appendChild(edit);
+    buttonTd.appendChild(Delete);
+    tr.appendChild(buttonTd);
   }
 
   details.style.display = "block";

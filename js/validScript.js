@@ -17,6 +17,8 @@ userInput.forEach((input) =>
     let empty = false,
       valid = true;
 
+    if (target.id == "search") return; // to return if search field invokes this
+
     // To check if an error tag already exists.
     if (!parent.querySelector("#error")) {
       let error = document.createElement("span"); // creating a span for errors.
