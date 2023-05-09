@@ -69,6 +69,7 @@ input[type="tel"] {
 }
 
 #showBtn {
+  width: 40%;
   /* display: none; */
 }
 
@@ -118,8 +119,13 @@ input[type="tel"] {
 #showDetails td {
   border: 2px solid black;
   word-wrap: break-word;
+  padding: 2px 5px;
   text-align: left;
   width: 50%;
+}
+
+#userDetails button {
+  margin-right: 5px;
 }
 
 #search {
