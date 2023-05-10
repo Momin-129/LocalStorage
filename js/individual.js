@@ -1,24 +1,71 @@
+// Automatic form fill
+
+let record = JSON.parse(localStorage.getItem("record"));
+let individual = parseInt(localStorage.getItem("individual"));
+
 (function loadData() {
-  let record = JSON.parse(localStorage.getItem("record"));
-  let individual = parseInt(localStorage.getItem("individual"));
   let eachRecord = record[individual];
-  let userInput = document.querySelectorAll("input,select");
-  let languages = document.querySelectorAll("input[type='checkbox']");
-  for (let item in eachRecord) {
-    document.getElementById(item).value = eachRecord[item];
-    if (item == "gender") {
-      if (document.getElementById(item).value == eachRecord[item]) {
-        document.getElementById(item).checked = true;
+  let inputFields = document.querySelectorAll("input[type='text'],select");
+  let radioFields = document.querySelectorAll("input[type='radio']");
+  let checkFields = document.querySelectorAll("input[type='checkbox']");
+  for (item in eachRecord) {
+    inputFields.forEach((input) => {
+      if (input.id == item) {
+        input.value = eachRecord[item];
       }
+    });
+
+    if (item == "gender") {
+      radioFields.forEach((input) => {
+        if (input.value == eachRecord[item]) {
+          input.checked = true;
+        }
+      });
     }
     if (item == "language") {
-      eachRecord[item].forEach((lang) => {
-        languages.forEach((language) => {
-          if (language.value == lang) {
-            language.checked = true;
+      for (let element in eachRecord[item]) {
+        checkFields.forEach((input) => {
+          if (input.value == eachRecord[item][element]) {
+            input.checked = true;
           }
         });
-      });
+      }
     }
   }
 })();
+
+// Form Updation
+document.getElementById("update").addEventListener("click", (e) => {
+  e.preventDefault();
+  let eachRecord = record[individual];
+  let inputFields = document.querySelectorAll("input[type='text'],select");
+  let radioFields = document.querySelectorAll("input[type='radio']");
+  let checkFields = document.querySelectorAll("input[type='checkbox']");
+  let languages = [];
+  for (item in eachRecord) {
+    inputFields.forEach((input) => {
+      if (input.id == item) {
+        eachRecord[item] = input.value;
+      }
+    });
+
+    if (item == "gender") {
+      radioFields.forEach((input) => {
+        if (input.checked == true) {
+          eachRecord[item] = input.value;
+        }
+      });
+    }
+    if (item == "language") {
+      checkFields.forEach((input) => {
+        if (input.checked == true) {
+          languages.push(input.value);
+        }
+      });
+      eachRecord[item] = languages;
+    }
+  }
+
+  localStorage.setItem("record", JSON.stringify(record));
+  location.href = "showForm.html";
+});

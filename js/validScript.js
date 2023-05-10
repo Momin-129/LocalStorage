@@ -1,11 +1,11 @@
 let userInput = document.querySelectorAll("input,select");
 let emptyChecker = {
-  name: true,
-  email: true,
-  contact: true,
-  address: true,
-  language: true,
-  identity: true,
+  name: false,
+  email: false,
+  contact: false,
+  address: false,
+  language: false,
+  identity: false,
 };
 let isValid = { name: true, email: true, contact: true };
 
@@ -102,7 +102,6 @@ userInput.forEach((input) =>
       if (isValid[key] == false) valid = false;
     }
 
-    console.log(empty, valid);
     if (empty == false && valid == true)
       document.querySelector(".btn").disabled = false;
     else document.querySelector(".btn").disabled = true;
