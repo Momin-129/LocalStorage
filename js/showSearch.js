@@ -27,7 +27,6 @@
     };
     Delete.onclick = (e) => {
       let individual = e.target.value;
-      // delete record[individual];
       if (individual == 0) {
         record.shift();
       } else {
@@ -64,42 +63,38 @@ document.querySelector("#search").addEventListener("keyup", () => {
   console.log("IN");
   record = JSON.parse(localStorage.getItem("record"));
 
-  let filter = record.filter((item) => {
-    if (item.name.includes(value)) {
-      return item;
-    }
-  });
-
   let table = document.getElementById("userDetails");
   let button = document.createElement("button");
   button.setAttribute("value", "Edit");
   table.innerHTML = "";
-  filter.forEach((element, index) => {
-    let tr = document.createElement("tr");
-    table.appendChild(tr);
-    for (item in element) {
-      let td = document.createElement("td");
-      let value = document.createTextNode(element[item]);
-      td.appendChild(value);
-      tr.appendChild(td);
+  record.forEach((element, index) => {
+    if (element.name.includes(value)) {
+      let tr = document.createElement("tr");
+      table.appendChild(tr);
+      for (item in element) {
+        let td = document.createElement("td");
+        let value = document.createTextNode(element[item]);
+        td.appendChild(value);
+        tr.appendChild(td);
+      }
+      let buttonTd = document.createElement("td");
+      let edit = document.createElement("button");
+      let Delete = document.createElement("button");
+      Delete.setAttribute("class", "btn btn-danger");
+      Delete.setAttribute("value", index);
+      Delete.innerHTML = "Delete";
+      edit.setAttribute("class", "btn btn-success");
+      edit.setAttribute("value", index);
+      edit.innerHTML = "Edit";
+      edit.onclick = (e) => {
+        let individual = e.target.value;
+        console.log(individual);
+        localStorage.setItem("individual", individual);
+        // location.href = "editDetails.html";
+      };
+      buttonTd.appendChild(edit);
+      buttonTd.appendChild(Delete);
+      tr.appendChild(buttonTd);
     }
-    let buttonTd = document.createElement("td");
-    let edit = document.createElement("button");
-    let Delete = document.createElement("button");
-    Delete.setAttribute("class", "btn btn-danger");
-    Delete.setAttribute("value", index);
-    Delete.innerHTML = "Delete";
-    edit.setAttribute("class", "btn btn-success");
-    edit.setAttribute("value", index);
-    edit.innerHTML = "Edit";
-    edit.onclick = (e) => {
-      let individual = e.target.value;
-      console.log(typeof individual);
-      localStorage.setItem("individual", individual);
-      location.href = "editDetails.html";
-    };
-    buttonTd.appendChild(edit);
-    buttonTd.appendChild(Delete);
-    tr.appendChild(buttonTd);
   });
 });
