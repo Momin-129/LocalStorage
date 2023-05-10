@@ -83,8 +83,7 @@ input[type="tel"] {
 }
 
 #showDetails {
-  /* display: none; */
-  width: 100%;
+  width: 80%;
   height: max-content;
   margin-bottom: 5vh;
   padding: 2vh 2vw;
@@ -106,6 +105,10 @@ input[type="tel"] {
   color: red;
 }
 
+.text-center button {
+  width: 60%;
+}
+
 #showDetails table {
   table-layout: fixed;
   width: 100%;
@@ -114,14 +117,14 @@ input[type="tel"] {
   border: 2px solid black;
   text-align: center;
   word-wrap: break-word;
-  /* width: 50%; */
+  width: 100%;
 }
 #showDetails td {
   border: 2px solid black;
   word-wrap: break-word;
   padding: 2px 5px;
   text-align: left;
-  width: 50%;
+  width: 100%;
 }
 
 #userDetails button {
@@ -144,10 +147,13 @@ input[type="tel"] {
     padding: 2vh 2vw;
   }
   #showDetails {
-    max-height: 400px;
     padding: 2vh 2vw;
-    width: auto;
+    width: 100%;
   }
+  #showDetails th {
+    width: 35vw;
+  }
+
   #showDetails .individual {
     margin-top: 10px;
   }
