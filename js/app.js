@@ -36,6 +36,12 @@ const form = document.querySelector("form");
       localStorage.setItem("individual", individual);
       location.href = "editDetails.html";
     };
+    Delete.onclick = (e) => {
+      let individual = e.target.value;
+      delete record[individual];
+      localStorage.setItem("record", record);
+      location.href = "showForm.html";
+    };
     buttonTd.appendChild(edit);
     buttonTd.appendChild(Delete);
     tr.appendChild(buttonTd);
