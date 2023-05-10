@@ -90,7 +90,7 @@ document.querySelector("#search").addEventListener("keyup", () => {
         let individual = e.target.value;
         console.log(individual);
         localStorage.setItem("individual", individual);
-        // location.href = "editDetails.html";
+        location.href = "editDetails.html";
       };
       buttonTd.appendChild(edit);
       buttonTd.appendChild(Delete);
