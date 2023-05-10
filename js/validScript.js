@@ -1,13 +1,13 @@
 let userInput = document.querySelectorAll("input,select");
 let emptyChecker = {
-  name: false,
-  email: false,
-  contact: false,
-  address: false,
-  language: false,
-  identity: false,
+  name: true,
+  email: true,
+  contact: true,
+  address: true,
+  language: true,
+  identity: true,
 };
-let isValid = { name: true, email: true, contact: true };
+let isValid = { name: false, email: false, contact: false };
 
 userInput.forEach((input) =>
   input.addEventListener("blur", (event) => {

@@ -1,5 +1,6 @@
 // Form Submission
 form.addEventListener("submit", (e) => {
+  console.log("Hello");
   e.preventDefault();
   const formData = new FormData(form);
   const obj = Object.fromEntries(formData);
