@@ -2,6 +2,23 @@
 
 (function () {
   let table = document.getElementById("userDetails");
+
+  let tr = document.createElement("tr");
+  table.appendChild(tr);
+  for (let item of record) {
+    for (let element in item) {
+      let th = document.createElement("th");
+      let value = document.createTextNode(element.toUpperCase());
+      th.appendChild(value);
+      tr.appendChild(th);
+    }
+    let th = document.createElement("th");
+    th.innerHTML = "Edit/Delete";
+    tr.appendChild(th);
+
+    break;
+  }
+
   record.forEach((element, index) => {
     let tr = document.createElement("tr");
     table.appendChild(tr);
@@ -64,9 +81,26 @@ document.querySelector("#search").addEventListener("keyup", () => {
   record = JSON.parse(localStorage.getItem("record"));
 
   let table = document.getElementById("userDetails");
+  table.innerHTML = "";
+
+  let tr = document.createElement("tr");
+  table.appendChild(tr);
+  for (let item of record) {
+    for (let element in item) {
+      let th = document.createElement("th");
+      let value = document.createTextNode(element.toUpperCase());
+      th.appendChild(value);
+      tr.appendChild(th);
+    }
+    let th = document.createElement("th");
+    th.innerHTML = "Edit/Delete";
+    tr.appendChild(th);
+
+    break;
+  }
+
   let button = document.createElement("button");
   button.setAttribute("value", "Edit");
-  table.innerHTML = "";
   record.forEach((element, index) => {
     if (element.name.includes(value)) {
       let tr = document.createElement("tr");
