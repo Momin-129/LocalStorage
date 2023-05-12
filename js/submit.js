@@ -1,6 +1,5 @@
 // Form Submission
 form.addEventListener("submit", (e) => {
-  console.log("Hello");
   e.preventDefault();
   const formData = new FormData(form);
   const obj = Object.fromEntries(formData);
@@ -12,7 +11,7 @@ form.addEventListener("submit", (e) => {
   localStorage.setItem("record", JSON.stringify(record));
   form.reset();
 
-  document.getElementById("btn").disabled = true;
+  document.getElementById("submit").disabled = true;
   document.getElementById("showDetails").style.display = "none";
   document.getElementById("showBtn").style.display = "inline";
 });

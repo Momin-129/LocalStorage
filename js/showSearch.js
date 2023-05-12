@@ -102,7 +102,7 @@ document.querySelector("#search").addEventListener("keyup", () => {
   let button = document.createElement("button");
   button.setAttribute("value", "Edit");
   record.forEach((element, index) => {
-    if (element.name.includes(value)) {
+    if (element.name.toLowerCase().includes(value.toLowerCase())) {
       let tr = document.createElement("tr");
       table.appendChild(tr);
       for (item in element) {
