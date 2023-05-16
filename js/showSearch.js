@@ -1,6 +1,11 @@
+import { sortBy } from "./sortBy.js";
+
 // Show Data
+window.onload = showData();
 
 function showData() {
+  let record = JSON.parse(localStorage.getItem("record")) ?? [];
+
   let table = document.getElementById("userDetails");
   table.innerHTML = "";
 
@@ -23,7 +28,7 @@ function showData() {
   record.forEach((element, index) => {
     let tr = document.createElement("tr");
     table.appendChild(tr);
-    for (item in element) {
+    for (let item in element) {
       let td = document.createElement("td");
       let value = document.createTextNode(element[item]);
       td.appendChild(value);
@@ -58,7 +63,6 @@ function showData() {
     tr.appendChild(buttonTd);
   });
 }
-showData();
 
 //
 //
@@ -133,4 +137,14 @@ document.querySelector("#search").addEventListener("keyup", () => {
       tr.appendChild(buttonTd);
     }
   });
+});
+
+//
+//
+//
+//
+
+document.getElementById("sortBy").addEventListener("change", (e) => {
+  sortBy(e);
+  showData();
 });
