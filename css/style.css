@@ -73,7 +73,7 @@ input[type="tel"] {
   width: max-content;
   height: 60%;
   padding-top: 5vh;
-  background-color: #eed971;
+  background-color: #ffffff;
 }
 
 #showDetails {
@@ -128,10 +128,6 @@ input[type="tel"] {
 #search {
   border-radius: 5px;
 }
-
-/* #submit { */
-/*   opacity: 1; */
-/* } */
 
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */

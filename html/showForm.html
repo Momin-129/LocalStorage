@@ -12,7 +12,9 @@
     <link href="../css/style.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="text-center"><h2>User Data</h2></div>
+    <div class="navBar">
+      <span class="title">User Data</span>
+    </div>
     <div class="container-fluid" id="showDetails">
       <input
         type="search"
@@ -20,6 +22,15 @@
         name="search"
         placeholder="Search Name..."
       />
+      <br /><br />
+
+      <select class="form-select" id="sortBy">
+        <option disabled selected>Sort By</option>
+        <option value="name">Name</option>
+        <option value="email">Email</option>
+        <option value="contact">Contact</option>
+      </select>
+
       <br /><br />
       <div class="row" id="gridRow">
         <table id="userDetails"></table>

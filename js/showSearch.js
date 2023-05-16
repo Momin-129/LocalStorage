@@ -1,7 +1,8 @@
 // Show Data
 
-(function () {
+function showData() {
   let table = document.getElementById("userDetails");
+  table.innerHTML = "";
 
   let tr = document.createElement("tr");
   table.appendChild(tr);
@@ -56,7 +57,8 @@
     buttonTd.appendChild(Delete);
     tr.appendChild(buttonTd);
   });
-})();
+}
+showData();
 
 //
 //
