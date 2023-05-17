@@ -1,7 +1,6 @@
 import FormValidation from "./FormValidation.js";
 
-let record = JSON.parse(localStorage.getItem("record")) ?? [];
-const form = document.querySelector("form");
+import { SubmitData } from "./submit.js";
 
 let emptyChecker = {
   name: true,
@@ -14,12 +13,35 @@ let emptyChecker = {
 
 let isValid = { name: false, email: false, contact: false };
 
+function enableSubmit() {
+  let empty = false,
+    valid = true;
+
+  for (let item in emptyChecker) {
+    if (emptyChecker[item]) empty = true;
+  }
+
+  for (let item in isValid) {
+    if (!isValid[item]) valid = false;
+  }
+
+  if (!empty && valid) document.getElementById("submit").disabled = false;
+  else document.getElementById("submit").disabled = true;
+}
+
 $(document).ready(function () {
   $("input").blur(function (e) {
     FormValidation(e.target, emptyChecker, isValid);
+    enableSubmit();
   });
 
   $("input[type='checkbox'],select").change(function (e) {
     FormValidation(e.target, emptyChecker, isValid);
+    enableSubmit();
   });
+});
+
+document.getElementById("submit").addEventListener("click", (e) => {
+  e.preventDefault();
+  SubmitData(e);
 });

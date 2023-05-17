@@ -11,13 +11,31 @@ let emptyChecker = {
 };
 let isValid = { name: true, email: true, contact: true };
 
+function enableSubmit() {
+  let empty = false,
+    valid = true;
+
+  for (let item in emptyChecker) {
+    if (emptyChecker[item]) empty = true;
+  }
+
+  for (let item in isValid) {
+    if (!isValid[item]) valid = false;
+  }
+
+  if (!empty && valid) document.getElementById("update").disabled = false;
+  else document.getElementById("update").disabled = true;
+}
+
 $(document).ready(function () {
   $("input").blur(function (e) {
     FormValidation(e.target, emptyChecker, isValid);
+    enableSubmit();
   });
 
   $("input[type='checkbox'],select").change(function (e) {
     FormValidation(e.target, emptyChecker, isValid);
+    enableSubmit();
   });
 });
 

@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 5px 5px;
   height: 100%;
-  background-color: #666666;
+  background-color: #a2b9bc;
 }
 
 .navBar {
@@ -127,6 +127,10 @@ input[type="tel"] {
 
 #search {
   border-radius: 5px;
+}
+
+#sortBy {
+  width: 40%;
 }
 
 @media only screen and (max-width: 768px) {

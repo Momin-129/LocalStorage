@@ -83,8 +83,7 @@ function showData() {
 document.querySelector("#search").addEventListener("keyup", () => {
   let value = document.getElementById("search").value;
 
-  console.log("IN");
-  record = JSON.parse(localStorage.getItem("record"));
+  let record = JSON.parse(localStorage.getItem("record"));
 
   let table = document.getElementById("userDetails");
   table.innerHTML = "";
@@ -111,7 +110,7 @@ document.querySelector("#search").addEventListener("keyup", () => {
     if (element.name.toLowerCase().includes(value.toLowerCase())) {
       let tr = document.createElement("tr");
       table.appendChild(tr);
-      for (item in element) {
+      for (let item in element) {
         let td = document.createElement("td");
         let value = document.createTextNode(element[item]);
         td.appendChild(value);

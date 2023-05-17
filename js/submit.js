@@ -1,17 +1,21 @@
 // Form Submission
-form.addEventListener("submit", (e) => {
+
+function SubmitData(e) {
+  console.log("Submit");
+  let record = JSON.parse(localStorage.getItem("record")) ?? [];
+  const form = document.querySelector("form");
   e.preventDefault();
   const formData = new FormData(form);
   const obj = Object.fromEntries(formData);
   console.log(obj);
   let Languages = formData.getAll("language");
   obj.language = Languages;
-
+  console.log(obj);
   record.push(obj);
   localStorage.setItem("record", JSON.stringify(record));
   form.reset();
 
   document.getElementById("submit").disabled = true;
-  document.getElementById("showDetails").style.display = "none";
-  document.getElementById("showBtn").style.display = "inline";
-});
+}
+
+export { SubmitData };
