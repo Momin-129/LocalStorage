@@ -1,7 +1,6 @@
 // Form Submission
 
 function SubmitData(e) {
-  console.log("Submit");
   let record = JSON.parse(localStorage.getItem("record")) ?? [];
   const form = document.querySelector("form");
   e.preventDefault();
